@@ -20,6 +20,8 @@ public class Publisher {
     @JoinColumn(name = "publisher_id")
     private Set<Book> books= new HashSet<>();
 
+    public Publisher() {
+    }
 
     public Publisher(Long id, String name, String addressLine1, String city, String state, int zipcode) {
         this.id = id;
