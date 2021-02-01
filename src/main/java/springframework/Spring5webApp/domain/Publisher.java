@@ -2,13 +2,12 @@ package springframework.Spring5webApp.domain;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class publisher {
+public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -17,9 +16,12 @@ public class publisher {
     private String city;
     private String state;
     private int zipcode;
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books= new HashSet<>();
 
 
-    public publisher(Long id, String name, String addressLine1, String city, String state, int zipcode) {
+    public Publisher(Long id, String name, String addressLine1, String city, String state, int zipcode) {
         this.id = id;
         this.name = name;
         this.addressLine1 = addressLine1;
@@ -68,6 +70,22 @@ public class publisher {
         this.zipcode = zipcode;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public String toString() {
         return "publisher{" +
@@ -85,7 +103,7 @@ public class publisher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        publisher publisher = (publisher) o;
+        Publisher publisher = (Publisher) o;
 
         return id != null ? id.equals(publisher.id) : publisher.id == null;
     }

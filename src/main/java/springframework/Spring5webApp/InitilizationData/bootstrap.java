@@ -29,6 +29,7 @@ public class bootstrap implements CommandLineRunner {
         //providing book=author
         book.getAuthors().add(author);
 
+
         //saving the author
         authorRepository.save(author);
         //saving the book
@@ -37,6 +38,7 @@ public class bootstrap implements CommandLineRunner {
         Book book1 = new Book("Java","23456");
         author1.getBooks().add(book1);
         book1.getAuthors().add(author1);
+        book1.setPublisher(publisher);
         //saving the author
         authorRepository.save(author1);
         //saving the book

@@ -13,6 +13,9 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+    @ManyToOne
+    //Many publisher comming to one entity
+    private Publisher publisher;
 
     //Book can have more than one author
     @ManyToMany
@@ -59,6 +62,14 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     @Override
